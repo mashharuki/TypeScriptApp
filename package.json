@@ -1,10 +1,15 @@
 {
-  "name": "TypeScriptApp",
+  "name": "my-webpack-project",
   "version": "1.0.0",
-  "description": "TypeScriptを学習するためのリポジトリです。",
+  "description": "My webpack project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -19,6 +24,16 @@
   "homepage": "https://github.com/mashharuki/TypeScriptApp#readme",
   "dependencies": {
     "@types/node": "^16.11.6",
-    "typescript": "^4.4.4"
+    "@webpack-cli/generators": "^2.4.1"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.4.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0",
+    "workbox-webpack-plugin": "^6.3.0"
   }
 }
