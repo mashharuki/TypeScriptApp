@@ -11,7 +11,7 @@ const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
   // エントリーファイル
-  entry: "./src/index.ts",
+  entry: "./src/console.ts",
   //  ビルドファイルの出力先
   output: {
     path: path.resolve(__dirname, "dist"),
