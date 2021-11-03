@@ -8,3 +8,10 @@ TypeScriptを学習するためのリポジトリです。
 ### Webpack
     JavaScriptモジュールハンドラのこと。  
     多数のスクリプトファイルをまとめて圧縮すること。
+
+### TypeScriptのモジュールをインストールするコマンド
+   `npm i typescript @type/node` 
+
+### npmとTypeScriptの設定ファイルを作成するコマンド
+   `npm -y init`
+   `tsc --init`

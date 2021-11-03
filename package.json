@@ -1,0 +1,24 @@
+{
+  "name": "TypeScriptApp",
+  "version": "1.0.0",
+  "description": "TypeScriptを学習するためのリポジトリです。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mashharuki/TypeScriptApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mashharuki/TypeScriptApp/issues"
+  },
+  "homepage": "https://github.com/mashharuki/TypeScriptApp#readme",
+  "dependencies": {
+    "@types/node": "^16.11.6",
+    "typescript": "^4.4.4"
+  }
+}
