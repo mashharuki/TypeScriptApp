@@ -33,3 +33,8 @@ TypeScriptを学習するためのリポジトリです。
 
 ### ※注意点※
     スクリプトファイルは、「src」ディレクトリ配下に入れること
+
+### エラー対処法
+    
+   1. Accessors are only available when targeting ECMAScript 5 and higher.が出た場合
+      tscコマンドを実行する時に「-t ES5」をつけること。 

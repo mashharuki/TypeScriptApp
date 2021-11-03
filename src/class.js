@@ -55,24 +55,58 @@ var School;
 var Student = /** @class */ (function (_super) {
     __extends(Student, _super);
     function Student(name, school, grade) {
-        var _this = _super.call(this, name) || this;
+        var _this = 
+        // スーパークラスであるPersonのコンストラクターを呼び出している。
+        _super.call(this, name) || this;
+        _this.garde_num = -1;
+        _this.gr_str = '';
         _this.school = school;
-        _this.grade = grade;
-        switch (school) {
-            case School.junior:
-                _this.age = 6 + _this.grade;
-                break;
-            case School.juniorHigh:
-                _this.age = 12 + _this.grade;
-                break;
-            case School.high:
-                _this.age = 15 + _this.grade;
-                break;
-            default:
-                _this.age = -1;
-        }
+        _this.gradeN = grade;
         return _this;
     }
+    // print()関数をオーバーライドする。
+    Student.prototype.print = function () {
+        var gd = this.grade ? String(this.grade) : '-';
+        console.log(this.name + '(' + this.school + 'school: ' + gd + 'grade)');
+    };
+    Object.defineProperty(Student.prototype, "gradeN", {
+        // grade_numのgetter
+        get: function () {
+            return this.garde_num;
+        },
+        // grade_numのsetter
+        set: function (n) {
+            this.garde_num = n;
+            this.grade = String(n);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Student.prototype, "grade", {
+        // gradeのgetter
+        get: function () {
+            return this.gr_str;
+        },
+        // gradeのsetter
+        set: function (pr) {
+            var gd = pr;
+            switch (this.gradeN) {
+                case 1:
+                    gd += 'st';
+                    break;
+                case 2:
+                    gd += 'nd';
+                    break;
+                case 3:
+                    gd += 'rd';
+                    break;
+                default: gd += 'th';
+            }
+            this.gr_str = gd;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Student;
 }(Person));
 var hanako2 = new Student('hanako2', School.high, 2);

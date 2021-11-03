@@ -4,9 +4,9 @@
 
 // Personクラス
 class Person {
-    name:string = 'no-name'
-    mail?:string
-    age?:number
+    public name:string = 'no-name'
+    public mail?:string
+    public age?:number
 
     constructor(name:string, mail:string = 'no-mail', age:number = -1) {
         this.name = name
@@ -45,27 +45,45 @@ enum School {
 // Personクラスを継承したStudentクラスを作成する。
 class Student extends Person {
     school ? : School
-    grade ? : number
+    private garde_num:number = -1
+    private gr_str:string = ''
 
     constructor(name: string, school: School, grade: number) {
         // スーパークラスであるPersonのコンストラクターを呼び出している。
         super(name)
         this.school = school
-        this.grade = grade
+        this.gradeN = grade
+    }
 
-        switch(school) {
-            case School.junior:
-                this.age = 6 + this.grade
-                break
-            case School.juniorHigh:
-                this.age = 12 + this.grade
-                break
-            case School.high:
-                this.age = 15 + this.grade
-                break
-            default:
-                this.age = -1
+    // print()関数をオーバーライドする。
+    print(): void {
+        let gd:string = this.grade ? String(this.grade) : '-'
+        console.log(this.name + '(' + this.school + 'school: ' + gd + 'grade)')
+    }
+
+    // grade_numのgetter
+    get gradeN():number {
+        return this.garde_num
+    }
+    // grade_numのsetter
+    set gradeN(n:number) {
+        this.garde_num = n
+        this.grade = String(n)
+    }
+    // gradeのgetter
+    get grade():string {
+        return this.gr_str
+    }
+    // gradeのsetter
+    private set grade(pr:string) {
+        let gd = pr
+        switch(this.gradeN) {
+            case 1: gd += 'st'; break
+            case 2: gd += 'nd'; break
+            case 3: gd += 'rd'; break
+            default: gd += 'th' 
         }
+        this.gr_str = gd
     }
 }
 
