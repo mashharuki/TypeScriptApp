@@ -155,4 +155,105 @@ const data2 = new Data<number> (123, 456, 789)
 data1.print()
 data2.print()
     
+type stringArray = {
+    [key in string]: string
 }
+
+const data3:stringArray = {
+    'start': '最初の値',
+    'middle': '中央の値',
+    'end': '最後の値'
+}
+
+data3['finish'] == '**おしまい**'
+data3[100] = 'ok'
+console.log(data3)
+
+type People2 = Student | Employee
+
+const taro2:People2 = new Student('taro', School.juniorHigh, 3)
+const hana:People2 = new Employee('hanako', School.high, new Date())
+const data4:People2[] = [taro2, hana]
+
+const data5 = [10, 20, 30]
+const msg = `data is [ ${data5} ]`
+console.log(msg)
+
+type val_name = "sample" | "private" | "public"
+type data_type = `${val_name}_data`
+type prop_type = `${val_name}_property`
+const s:data_type = "sample_data"
+const v:prop_type = "sample_property"
+
+// イテレータークラス
+class MtData<T> {
+    data:T[] = []
+
+    constructor (...data: T[]){
+        this.data = data
+    }
+
+    add(val:T) {
+        this.data.push(val)
+    }
+
+    [Symbol.iterator]() {
+        let pos = 0;
+        let items = this.data;
+
+        return {
+            next():IteratorResult<T> {
+                if (pos < items.length) {
+                    return {
+                        done: false,
+                        value: items[pos++]
+                    }
+                } else {
+                    return {
+                        done: true,
+                        value: null
+                    }
+                }
+            }
+        }
+    }
+}
+
+// const data6 = new MtData<string>('one', 'two', 'three')
+
+// for (let item of data6) {
+//   console.log(item)
+// }
+
+// GET通信でデータを取得する関数
+async function getData(url: string) {
+    const response = await fetch(url)
+    const result = await response.json()
+    for (let item of result) {
+        console.log(JSON.stringify(item))
+    }
+} 
+
+// POST通信でデータを送信する関数
+async function postData(url:string, obj:object) {
+    await fetch(url, {
+        method: 'POST',
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+    const response = await fetch(url)
+    const result = await response.json()
+    console.log(result)
+}
+
+const obj = {
+    title : "Hello!",
+    message : "This is sample message!"
+}
+
+const url = "https://tuyano-dummy-data.firebaseio.com/sample_data.json"
+getData(url)
+postData(url, obj)
