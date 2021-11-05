@@ -1,21 +1,6 @@
 /**
  * クラスの利用をマスターするためのファイル
  */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 // Personクラス
 var Person = /** @class */ (function () {
     function Person(name, mail, age) {
@@ -27,9 +12,7 @@ var Person = /** @class */ (function () {
         this.age = age;
     }
     Person.prototype.print = function () {
-        var ml = this.mail ? this.mail : 'no-mail';
-        var ag = this.age ? this.age : -1;
-        console.log(this.name + '(' + ml + ',' + ag + ')');
+        console.log(this.name + '(' + this.mail + ',' + this.age + ')');
     };
     return Person;
 }());
@@ -52,17 +35,15 @@ var School;
     School["other"] = "other";
 })(School || (School = {}));
 // Personクラスを継承したStudentクラスを作成する。
-var Student = /** @class */ (function (_super) {
-    __extends(Student, _super);
+var Student = /** @class */ (function () {
     function Student(name, school, grade) {
-        var _this = 
+        this.name = 'no-name';
+        this.garde_num = -1;
+        this.gr_str = '';
         // スーパークラスであるPersonのコンストラクターを呼び出している。
-        _super.call(this, name) || this;
-        _this.garde_num = -1;
-        _this.gr_str = '';
-        _this.school = school;
-        _this.gradeN = grade;
-        return _this;
+        this.name = name;
+        this.school = school;
+        this.gradeN = grade;
     }
     // print()関数をオーバーライドする。
     Student.prototype.print = function () {
@@ -108,6 +89,31 @@ var Student = /** @class */ (function (_super) {
         configurable: true
     });
     return Student;
-}(Person));
+}());
 var hanako2 = new Student('hanako2', School.high, 2);
 hanako2.print();
+var jiro = new Student('jiro');
+// Human型の配列を生成する。
+var data = [taro, hanako, sachiko, jiro];
+for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+    var item = data_1[_i];
+    item.print();
+}
+// Employeeクラス
+var Employee = /** @class */ (function () {
+    // コンストラクター
+    function Employee(nm, cm, bth) {
+        this.name = 'no-name';
+        this.company = '';
+        this.birth = new Date();
+        this.name = nm;
+        this.company = cm;
+        this.birth = bth;
+    }
+    Employee.prototype.print = function () {
+        console.log(this.name + '[' + this.company + ']');
+    };
+    return Employee;
+}());
+var ichiro = new Employee('ichiro', 'Baseball Inc.', new Date('1982/10/10'));
+ichiro.print();

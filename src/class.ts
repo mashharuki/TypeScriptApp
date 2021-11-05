@@ -2,8 +2,14 @@
  * クラスの利用をマスターするためのファイル
  */
 
+// Humanインターフェース
+interface Human {
+    name: string;
+    print(): void
+}
+
 // Personクラス
-class Person {
+class Person implements Human {
     public name:string = 'no-name'
     public mail?:string
     public age?:number
@@ -15,9 +21,7 @@ class Person {
     }
 
     print():void {
-        const ml:string = this.mail ? this.mail : 'no-mail'
-        const ag:number = this.age ? this.age : -1
-        console.log(this.name + '(' + ml + ','+ ag + ')')
+        console.log(this.name + '(' + this.mail + ','+ this.age + ')')
     }
 }
 
@@ -43,14 +47,15 @@ enum School {
 }
 
 // Personクラスを継承したStudentクラスを作成する。
-class Student extends Person {
+class Student implements Human {
     school ? : School
+    public name :string = 'no-name'
     private garde_num:number = -1
     private gr_str:string = ''
 
-    constructor(name: string, school: School, grade: number) {
+    constructor(name: string, school?: School, grade?: number) {
         // スーパークラスであるPersonのコンストラクターを呼び出している。
-        super(name)
+        this.name = name
         this.school = school
         this.gradeN = grade
     }
@@ -89,4 +94,65 @@ class Student extends Person {
 
 const hanako2 = new Student('hanako2', School.high, 2)
 hanako2.print()
+const jiro = new Student('jiro')
 
+// Human型の配列を生成する。
+const data: Human[] = [ taro, hanako, sachiko, jiro ]
+
+for (let item of data) {
+    item.print()
+}
+
+// Peopleインターフェース
+interface People extends Human {
+    birth: Date
+}
+
+// Employeeクラス
+class Employee implements People {
+    public name: string = 'no-name'
+    public company: string = ''
+    birth: Date = new Date()
+
+    // コンストラクター
+    constructor(nm: string, cm: string, bth: Date) {
+        this.name = nm
+        this.company = cm
+        this.birth = bth
+    }
+
+    print(): void {
+        console.log(this.name + '[' + this.company + ']')
+    }
+}
+
+const ichiro = new Employee('ichiro', 'Baseball Inc.', new Date('1982/10/10'))
+ichiro.print()
+
+// 総称型のクラス
+class Data<T> {
+    // 総称型の変数の配列
+    data?:T[]
+
+    // コンストラクター
+    constructor(...item:T[]) {
+        this.data = item
+    }
+
+    print(): void  {
+        if(this.data) {
+            for (let item of this.data) {
+                console.log(item)
+            }
+        } else {
+            console.log('no data...')
+        }
+    }
+}
+
+const data1 = new Data<string> ('one', 'two', 'three')
+const data2 = new Data<number> (123, 456, 789)
+data1.print()
+data2.print()
+    
+}

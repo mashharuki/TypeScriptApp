@@ -23,7 +23,7 @@ TypeScriptを学習するためのリポジトリです。
    `npx webpack-cli init`
 
 ### Webpack関連のコマンド
-   <a href="./README.md">こちらのmdファイルを参照</a>
+   <a href="./README2.md">こちらのmdファイルを参照</a>
 
 ### クロージャ
     定義された環境を保ち、その中で動く関数のこと
@@ -38,3 +38,5 @@ TypeScriptを学習するためのリポジトリです。
     
    1. Accessors are only available when targeting ECMAScript 5 and higher.が出た場合
       tscコマンドを実行する時に「-t ES5」をつけること。 
+
+### パラメータプロパティ
