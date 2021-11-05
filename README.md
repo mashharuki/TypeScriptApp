@@ -22,6 +22,9 @@ TypeScriptを学習するためのリポジトリです。
 ### Webpack-CLIで初期化するコマンド
    `npx webpack-cli init`
 
+### TypeScriptベースのReactプロジェクトを生成するコマンド
+   `npx create-react-app react_TS_App --template typescript`
+
 ### Webpack関連のコマンド
    <a href="./README2.md">こちらのmdファイルを参照</a>
 
